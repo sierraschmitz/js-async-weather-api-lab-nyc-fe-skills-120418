@@ -37,7 +37,7 @@ function displayCurrentWeather(json) {
   lowCell.innerHTML =json.main.temp
   highCell.innerHTML =json.main.temp_max
   humidtyCEll.innterHTML = json.main.humidty
-  couldCell.innerHTML = json.clouds.all
+  clouldCell.innerHTML = json.clouds.all
   const currentTemperature =json.main.temp
 }
 
