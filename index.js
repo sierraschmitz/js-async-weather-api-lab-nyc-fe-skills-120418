@@ -12,10 +12,13 @@ function handleFormSubmit(event) {
   // use the .value
   const whatTheyTypes = input.value
   console.log(whatTheyTyped)
+  
 }
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
+  
+  
 }
 
 function displayCurrentWeather(json) {
