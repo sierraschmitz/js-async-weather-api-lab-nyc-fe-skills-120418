@@ -21,12 +21,13 @@ function fetchCurrentWeather(city) {
   //query parameter
   fetch('http://apt.openweathermap.org/date/2.5/weather?q=' + city +'&APPID=' + API_KEY)
   .then((response) => response.json())
-  .then((json) => console.log(json))
+  .then((json) => displayCurrentWeather(json))
   
 }
 
 function displayCurrentWeather(json) {
   //render current weather data to the DOM using provided IDs and json from API
+  //update our html
 }
 
 
