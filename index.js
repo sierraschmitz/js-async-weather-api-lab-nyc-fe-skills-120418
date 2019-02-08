@@ -29,6 +29,15 @@ function displayCurrentWeather(json) {
   //render current weather data to the DOM using provided IDs and json from API
   //update our html
   const tableCell = document.querySelector('#temp')
+  const highCell = document.querySelector('#low')
+  const lowCell = document.querySelector('#high')
+  const humidityCell = document.querySelector('#humidty')
+  const cloudCell = document.querySelector('#cloudcover')
+  tableCell.innerHTML = currentTemperature
+  lowCell.innerHTML =json.main.temp
+  highCell.innerHTML =json.main.temp_max
+  humidtyCEll.innterHTML = json.main.humidty
+  couldCell.innerHTML = json.clouds.all
   const currentTemperature =json.main.temp
 }
 
