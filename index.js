@@ -18,7 +18,7 @@ function handleFormSubmit(event) {
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
-  
+  fetch('http://apt.openweathermap.org')
   
 }
 
