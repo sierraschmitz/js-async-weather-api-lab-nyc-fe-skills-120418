@@ -77,6 +77,8 @@ aside.innerHTML = innerHTMlString
 
 function createChart(json) {
   //Bonus: render temperature chart using five day forecast data and ChartJS
+  
+  
 }
 
 document.addEventListener('DOMContentLoaded', function() {
