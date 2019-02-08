@@ -63,12 +63,15 @@ for (let forecast of json.list) {
   const day = forecast.dt_text
   const low = forecast.main.temp_min
   const high = forecast.main.temp_max
-  currnetDivString = currentDivString = + "<p>" + day + '</p>' + <p> + low + </p> + 
+  currentDivString = currentDivString = + "<p>" + day + '</p>' + '<p>' + low + '</p>' + high + '</p>' +</div>
+  innerHTMLString = innerHTMLString + currentDivString
+  
   
   // put this in a div 
   // const div = document.createElement 
-
 }
+const aside = document.querySelector('aside')
+aside.innerHTML = innerHTMlString
 }
 
 
