@@ -1,95 +1,87 @@
-const API_KEY = "4b932834402c3bc9cc23d6c2fc06d63b"
+const API_KEY = "9fe41d51c1b087845b518de5bd00e6fd"
 
 // 1. We need an event listener for the input box ('submit')
-// 2. Get what they types in, and then fetch data from the weather APT for that city
+// 2. Get what they typed in, and then Fetch data from the weather API for that city
 // 3. Fill out the forecast/graph
 
 function handleFormSubmit(event) {
   //handle submit event
   event.preventDefault()
-  // Get the text that they typed in
+  // Get the input that they typed in
   const input = document.querySelector('#city')
-  // use the .value
+  // use the .value to get the text
   const whatTheyTyped = input.value
   fetchCurrentWeather(whatTheyTyped)
   fetchFiveDayForecast(whatTheyTyped)
-  
 }
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
-  //query parameter
-  fetch('http://apt.openweathermap.org/date/2.5/weather?q=' + city +'&APPID=' + API_KEY + '&units=imperial')
-  .then((response) => response.json())
-  .then((json) => displayCurrentWeather(json))
-  
+  // query parameter
+  fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&APPID=' + API_KEY + '&units=imperial')
+    .then((response) => response.json())
+    .then((json) => displayCurrentWeather(json))
 }
 
 function displayCurrentWeather(json) {
   //render current weather data to the DOM using provided IDs and json from API
-  //update our html
+  // Update our HTML
   const tableCell = document.querySelector('#temp')
-  const highCell = document.querySelector('#low')
-  const lowCell = document.querySelector('#high')
-  const humidityCell = document.querySelector('#humidty')
-  const cloudCell = document.querySelector('#cloudcover')
+  const lowCell = document.querySelector('#low')
+  const highCell = document.querySelector('#high')
+  const humidityCell = document.querySelector('#humidity')
+  const cloudCell = document.querySelector('#cloudCover') 
+  const currentTemperature = json.main.temp
   tableCell.innerHTML = currentTemperature
-  lowCell.innerHTML =json.main.temp
-  highCell.innerHTML =json.main.temp_max
-  humidtyCEll.innterHTML = json.main.humidty
-  clouldCell.innerHTML = json.clouds.all
-  const currentTemperature =json.main.temp
+  lowCell.innerHTML = json.main.temp_min
+  highCell.innerHTML = json.main.temp_max
+  humidityCell.innerHTML = json.main.humidity
+  cloudCell.innerHTML = json.clouds.all
 }
 
 
 function fetchFiveDayForecast(city) {
   //fetch five day forecast data based on city
-  fetch(http://api.openweathermap.org/data/2.5/forcast?q=' + city + &APPID=' + API_KEY + '&units=imperial')
-  .then(response => response.json())
-  .then(json => displayFiveDayForecast(json))
-  for (let forecast of json.list)
-  displayFiveDayForecast
-  createChart(json)
+  fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&APPID=' + API_KEY + '&units=imperial')
+    .then(response => response.json())
+    .then(json => {
+      displayFiveDayForecast(json)
+      createChart(json)
+    })
 }
 
 function displayFiveDayForecast(json) {
-  //bonus render five day forecast data to the DOM using provided IDs and json from API
-  console.log(json)
+  //render five day forecast data to the DOM using provided IDs and json from API
   
-  "<div> <p> day </p>low</p> </p>high</p> </div>"
-  let innerHTMLString
-for (let forecast of json.list) {
-  //3 things we want the day we want the low, and the
-  let currentDivString -'<div>'
-  const day = forecast.dt_text
-  const low = forecast.main.temp_min
-  const high = forecast.main.temp_max
-  currentDivString = currentDivString = + "<p>" + day + '</p>' + '<p>' + low + '</p>' + high + '</p>' +</div>
-  innerHTMLString = innerHTMLString + currentDivString
-  
-  
-  // put this in a div 
-  // const div = document.createElement 
+  // "<div> <p> day </p> <p>low</p> <p>high</p> </div>" 
+  let innerHTMLString = ''
+  for (let forecast of json.list) {
+    // 3 things: we want the day, we want the low, and the 
+    let currentDivString = '<div>'
+    const day = forecast.dt_txt
+    const low = forecast.main.temp_min 
+    const high = forecast.main.temp_max
+    currentDivString = currentDivString + "<p>" + day + "</p>" + "<p>" + low + "</p>" + "<p>" + high + "</p>" + "</div>"
+    innerHTMLString = innerHTMLString + currentDivString
+    // put this in a div
+    // const div = document.createElement()
+  }
+  const aside = document.querySelector('aside')
+  aside.innerHTML = innerHTMLString
 }
-const aside = document.querySelector('aside')
-aside.innerHTML = innerHTMlString
-}
-
 
 function createChart(json) {
   //Bonus: render temperature chart using five day forecast data and ChartJS
-  
+  const dateLabels = json.list.map((forecast) => forecast.dt_txt)
+  const tempData = json.list.map((forecast) => forecast.main.temp)
   const ctx = document.getElementById('WeatherChart').getContext('2d')
-  const dateLabels = json.list.map((forecast) => forecast.dt_text
-  const data = json.list.map((forecast) => forecastmain.temp
-  var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
+  var myChart = new Chart(ctx, {
+    type: 'line',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: dateLabels,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Temperature',
+            data: tempData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -119,12 +111,9 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-</script>
-
-  
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   //add event listener here for form submission
-  document.addEventListener('submit)',handleFormSubmit)
+  document.addEventListener('submit', handleFormSubmit)
 })
