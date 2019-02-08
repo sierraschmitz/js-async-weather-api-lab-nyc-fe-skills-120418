@@ -63,7 +63,7 @@ for (let forecast of json.list) {
   const day = forecast.dt_text
   const low = forecast.main.temp_min
   const high = forecast.main.temp_max
-  currnetDivString = currentDivString = + "<p>" + day + </'p>'
+  currnetDivString = currentDivString = + "<p>" + day + '</p>' + <p> + low + </p> + 
   
   // put this in a div 
   // const div = document.createElement 
