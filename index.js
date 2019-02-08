@@ -11,8 +11,8 @@ function handleFormSubmit(event) {
   const input = document.querySelector('#city')
   // use the .value
   const whatTheyTyped = input.value
-  // use the .value th get the text
-  const 
+  fetchCurrentWeather(whatTheyTyped)
+  fetchFiveDayForecast(whatTheyTyped)
   
 }
 
