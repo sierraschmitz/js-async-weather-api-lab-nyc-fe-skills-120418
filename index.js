@@ -80,7 +80,7 @@ function createChart(json) {
   
   const ctx = document.getElementById('WeatherChart').getContext('2d')
   const dateLabels = json.list.map((forecast) => forecast.dt_text
-  const data = json.list.map((forecas))
+  const data = json.list.map((forecast) => forecastmain.temp
   var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
