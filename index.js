@@ -79,6 +79,8 @@ function createChart(json) {
   //Bonus: render temperature chart using five day forecast data and ChartJS
   
   const ctx = document.getElementById('WeatherChart').getContext('2d')
+  const dateLabels = json.list.mpa((forecast) => forecast.dt_text
+  https://www.6sqft.com/20-underground-and-secret-nyc-attractions-you-need-to-check-out/
   
 }
 
