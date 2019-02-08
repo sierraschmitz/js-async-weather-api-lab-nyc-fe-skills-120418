@@ -47,6 +47,8 @@ function fetchFiveDayForecast(city) {
   fetch(http://api.openweathermap.org/data/2.5/forcast?q=' + city + &APPID=' + API_KEY + '&units=imperial')
   .then(response => response.json())
   .then(json => displayFiceDayForecast(json))
+  for (let forecast of json.list)
+  console.log(forecast.main.temp_min)
 }
 
 function displayFiveDayForecast(json) {
