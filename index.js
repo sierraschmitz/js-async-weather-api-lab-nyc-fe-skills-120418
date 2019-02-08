@@ -10,8 +10,9 @@ function handleFormSubmit(event) {
   // Get the text that they typed in
   const input = document.querySelector('#city')
   // use the .value
-  const whatTheyTypes = input.value
-  console.log(whatTheyTyped)
+  const whatTheyTyped = input.value
+  // use the .value th get the text
+  const 
   
 }
 
